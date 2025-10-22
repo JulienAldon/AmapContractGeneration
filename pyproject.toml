@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "AmapContractGeneration"
+version = "1.0.0"
+dependencies = [
+    "odfdo==3.16.7"
+]
+
+requires-python = ">=3.12"
+authors = [
+  {name = "Julien.aldon", email = "julien.aldon@wanadoo.fr"},
+]
+maintainers = [
+  {name = "Julien Aldon", email = "julien.aldon@wanadoo.fr"}
+]
+description = "Contract generation scripts."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E.*"]
+keywords = ["contract", "odt", "odfdo"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+[project.urls]
+Homepage = "https://github.com/JulienAldon/AmapContractGeneration"
+Documentation = "https://github.com/JulienAldon/AmapContractGeneration"
+Repository = "https://github.com/JulienAldon/AmapContractGeneration"
