@@ -32,8 +32,8 @@ graph LR;
     Start((Start))-->GetAllContractForms;
     GetAllContractForms(Get all contract forms)-->ForEachContract;
     ForEachContract(ForEach contract)-->GetFormSubmissions;
-    GetFormSubmissions(Get form contract submissions)-->FormatSubmissions;
-    FormatSubmissions(Format submissions)-->ForEachSubmission;
+    GetFormSubmissions(Get form contract submissions)-->FormatFormSubmissions;
+    FormatFormSubmissions(Format form submissions)-->ForEachSubmission;
     ForEachSubmission(ForEach submission)-->GenerateOneContract;
     GenerateOneContract(Generate one contract)-->SubmissionRemaining{Submission remaining ?};
     SubmissionRemaining--Yes-->ForEachSubmission
@@ -41,6 +41,10 @@ graph LR;
     ContractRemaining{Contract remaining ?}--Yes-->ForEachContract
     ContractRemaining--Noo-->Stop((Stop));
 ```
+- [GetAllContractForms](./src/scripts/)
+- [GetFormSubmissions](./src/scripts/)
+- [FormatFormSubmissions](./src/scripts/)
+- [GenerateOneContract](./src/flows/)
 
 ## One contract generation
 Generate a contract based on a specific answer in *contract form*.
@@ -59,11 +63,21 @@ graph LR;
     CreateFolders-->ConvertOdt(Convert Odt to Pdf);
     CreateFolders-->UploadOdt(Upload Odt on Nextcloud);
     ConvertOdt-->UploadPdf(Upload Pdf on Nextcloud);
-    ConvertOdt-->Sendemail(Send Email to member);
+    ConvertOdt-->SendEmail(Send Email to member);
     UploadOdt-->Stop((Stop));
-    Sendemail-->Stop((Stop));
+    SendEmail-->Stop((Stop));
     UploadPdf-->Stop((Stop));
 ```
+- [GetTemplateName](./src/scripts/)
+- [FormatProducts](./src/scripts/)
+- [GetTemplate](./src/scripts/)
+- [FillInformations](./src/scripts/)
+- [CalculateTotals](./src/scripts/)
+- [CreateFolders](./src/scripts/)
+- [ConvertOdt](./src/scripts/)
+- [UploadOdt](./src/scripts/)
+- [SendEmail](./src/scripts/)
+- [UploadPdf](./src/scripts/)
 
 ## All form contract generation
 Generate all form and templates based on new answers from *referer form*.
@@ -81,6 +95,9 @@ graph LR;
     RefererFormRemaining--Yes-->ForEachRefererForm;
     RefererFormRemaining--Noo-->Stop((Stop))
 ```
+- [GetAllRefererForm](./src/scripts/)
+- [GetRefererSubmission](./src/scripts/)
+- [GenerateOneFormTemplateContract](./src/scripts/)
 
 ## One form contract generation
 Generate a form and template based on a specifi answer from *referer form*.
@@ -101,8 +118,19 @@ graph LR;
     CreateContractTemplate-->CreateProductsShipmentTemplate(Create products and shipment template for manual fill)
     CreateProductsShipmentTemplate-->WebDavUploadTemplate
     WebDavUploadTemplate-->ShareFiles(Share files with referer)
-    ShareFiles-->NotifyReferer(Notify referer by mail)
+    ShareFiles-->SendEmail(Notify referer by mail)
     CreateMemberLink-->Stop((Stop))
-    NotifyReferer-->Stop((Stop))
+    SendEmail-->Stop((Stop))
     
 ```
+- [FormatInput](./src/scripts/)
+- [NextcloudWebdavGet](./src/scripts/)
+- [FillInformation](./src/scripts/)
+- [GenerateNextcloudForm](./src/scripts/)
+- [ShareForm](./src/scripts/)
+- [CreateContractTemplate](./src/scripts/)
+- [CreateProductsShipmentsFormTemplate](./src/scripts/)
+- [WebDavUploadTemplate](./src/scripts/)
+- [CreateProductsShipmentTemplate](./src/scripts/)
+- [ShareFiles](./src/scripts/)
+- [SendEmail](./src/scripts/)
